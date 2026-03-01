@@ -24,6 +24,7 @@ target is a lowercase English letter.
   */
 
 //my code
+//Brute force solution
 class Solution {
     public char nextGreatestLetter(char[] letters, char target) {
         char res = letters[0];
@@ -34,5 +35,23 @@ class Solution {
             }
         }
         return res;
+    }
+}
+
+//if we look into pattern it is similar to finding a ciel of element.so here we can apply binary search to find the target solution.
+class Solution {
+    public char nextGreatestLetter(char[] letters, char target) {
+        int start = 0;
+        int end = letters.length-1;
+        int mid = 0;
+        while(start <= end){
+            mid = start +(end-start)/2;
+            if(letters[mid]<=target){
+                start = mid+1;
+            }else{
+                end = mid-1;
+            }
+        }
+        return letters[start%letters.length];
     }
 }
