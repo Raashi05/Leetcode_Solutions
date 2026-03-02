@@ -50,3 +50,37 @@ class Solution {
 }
 
 //optimal approach with Binary Search
+class Solution {
+    public int[] searchRange(int[] nums, int target) {
+        int[] res = {-1,-1};
+
+        res[0] = find_index(nums,target,true);
+        res[1] = find_index(nums,target,false);
+
+        return res;        
+    }
+
+    static int find_index(int[] nums, int target, Boolean first_index){
+        int ans = -1;
+        int start = 0;
+        int end = nums.length-1;
+        int mid = 0;
+        while(start <= end){
+            mid = start + (end-start)/2;
+            if(target<nums[mid]){
+                end = mid-1;
+            }else if(target > nums[mid]){
+                start = mid+1;
+            }else{
+                ans = mid;
+                if(first_index){
+                    end = mid-1;
+                }else{
+                    start = mid+1;
+                }
+            }
+        }
+        return ans;
+    }
+    
+}
